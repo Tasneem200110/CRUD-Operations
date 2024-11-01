@@ -1,0 +1,29 @@
+﻿@model ApplicationRole
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Role Details</h1>
+<br />
+<br />
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label asp-for="@Model.Id" class="col-form-label"></label>
+            <input asp-for="@Model.Id" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Name" class="col-form-label"></label>
+            <input asp-for="@Model.Name" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CreatedAt" class="col-form-label"></label>
+            <input asp-for="@Model.CreatedAt" class="form-control" readonly />
+        </div>
+        <br />
+        <a class="btn btn-success" asp-action="Update" asp-route-id="@Model.Id">Edit</a> |
+        <a class="btn btn-light" asp-action="Index">Back To List</a>
+    </div>
+</div>
+

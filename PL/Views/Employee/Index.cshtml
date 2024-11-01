@@ -1,0 +1,89 @@
+﻿@model IEnumerable<EmployeeVM>
+@{
+    ViewData["Title"] = "EmployeePage";
+}
+
+<h1>All Employees</h1>
+<br />
+<a asp-action="Create" class="btn btn-primary">Create new Employee</a>
+<br />
+<br />
+
+<form class="my-3" asp-action="Index" asp-controller="Employee">
+    <div class="row">
+        <div class="col-sm-8 mb-3">
+            <input placeholder="Search By Name" name="SearchValue" class="form-control" />
+        </div>
+        <div class="col-sm-4">
+            <input type="submit" value="Search" class="btn btn-success btn-block" />
+        </div>
+        <div class="col-sm-8 mb-3">
+            <input placeholder="Search By Department Id" name="DepartmentId" class="form-control" />
+        </div>
+        <div class="col-sm-4">
+            <input type="submit" value="Search" class="btn btn-success btn-block" />
+        </div>
+    </div>
+</form>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(Emp => Emp.Name)</th>
+                <th>@Html.DisplayNameFor(Emp => Emp.Image)</th>
+                <th>@Html.DisplayNameFor(Emp => Emp.Email)</th>
+                <th>@Html.DisplayNameFor(Emp => Emp.HireDate)</th>
+                <th>@Html.DisplayNameFor(Emp => Emp.Address)</th>
+                <th>@Html.DisplayNameFor(Emp => Emp.Salary)</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <img src="/Files/Images/@item.ImageURL" class="img-circle" height="40" width="40" alt="Employee Image" />
+                    </td>
+                    <td>@item.Email</td>
+                    <td>@item.HireDate.Day-@Html.DisplayFor(m => item.HireDate.Month)-@Html.DisplayFor(m => item.HireDate.Year)</td>
+                    <td>@item.Address</td>
+                    <td>@item.Salary</td>
+
+
+
+                    <td>
+                        <a class="btn btn-success" asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id">
+                            <i class="fas fa-eye"></i> Details
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-controller="Employee" asp-action="Update" asp-route-id="@item.Id">
+                            <i class="fas fa-edit"></i> Update
+
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fas fa-trash"></i> Delete
+
+                        </a>
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h3>No Employee Found!!</h3>
+    </div>
+}

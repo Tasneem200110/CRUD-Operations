@@ -1,0 +1,26 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Update</h1>
+<br />
+<br />
+
+<form asp-action="Update">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.Id" />
+
+    <div class="form-group">
+        <label for="UserName">Username:</label>
+        <input asp-for="@Model.UserName" class="form-control" />
+        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+    </div>
+
+    <!-- Add other user fields you want to edit -->
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Details" asp-route-id="@Model.Id">Cancel</a>
+</form>
+
